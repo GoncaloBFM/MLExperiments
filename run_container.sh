@@ -1,0 +1,1 @@
+optirun docker run --mount type=bind,source=$(pwd)/.,target=/NN --gpus all -it nn
