@@ -83,17 +83,17 @@ def do_nn1(x_train, x_test, y_train, y_test):
         seq.compile(optimizer=optimizer, loss="binary_crossentropy", metrics=['accuracy'])  # vs categorical_crossentropy
         return seq
 
-    # sklearn_nn = KerasClassifier(build_fn=create_nn1, batch_size=10, epochs=100)
-    # grid_values = {
-    #     "batch_size": [1, 10, 25, 32],
-    #     "epochs": [2, 4],
-    #     "optimizer": ['adam', 'rmsprop']
-    # }
-    #
-    # grid = GridSearchCV(sklearn_nn, cv=2, param_grid=grid_values)
-    # grid.fit(x_train, y_train)
-    # print("best validation params", grid.best_params_)
-    # print("best validation score", grid.best_score_)
+    sklearn_nn = KerasClassifier(build_fn=create_nn1, batch_size=10, epochs=100)
+    grid_values = {
+        "batch_size": [1, 10, 25, 32],
+        "epochs": [2, 4],
+        "optimizer": ['adam', 'rmsprop']
+    }
+
+    grid = GridSearchCV(sklearn_nn, cv=2, param_grid=grid_values)
+    grid.fit(x_train, y_train)
+    print("best validation params", grid.best_params_)
+    print("best validation score", grid.best_score_)
 
     sklearn_nn = KerasClassifier(build_fn=create_nn1, batch_size=10, epochs=100)
     scores = cross_val_score(sklearn_nn, X=x_train, y=y_train, cv=10, n_jobs=16)
